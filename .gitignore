@@ -24,3 +24,6 @@ go-config
 
 # IDE Goland
 .idea/
+
+# No se guardan archivos json
+*.json
