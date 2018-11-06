@@ -18,12 +18,12 @@ type Configuration struct {
 }
 
 func New(fullpath string) (*Configuration, error) {
-	b, err := LoadFile(fullpath)
+	b, err := loadFile(fullpath)
 	if err != nil {
 		return nil, err
 	}
 
-	err = LoadBytes(b, &cnfg)
+	err = loadBytes(b, &cnfg)
 	if err != nil {
 		return nil, err
 	}
@@ -31,7 +31,7 @@ func New(fullpath string) (*Configuration, error) {
 	return &cnfg, nil
 }
 
-func LoadFile(fullpath string) ([]byte, error) {
+func loadFile(fullpath string) ([]byte, error) {
 	f, err := ioutil.ReadFile(fullpath)
 	if err != nil {
 		return f, err
@@ -40,7 +40,7 @@ func LoadFile(fullpath string) ([]byte, error) {
 	return f, nil
 }
 
-func LoadBytes(d []byte, c *Configuration) error {
+func loadBytes(d []byte, c *Configuration) error {
 	err := json.Unmarshal(d, &c.data)
 	if err != nil {
 		return err
