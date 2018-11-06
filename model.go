@@ -89,3 +89,13 @@ func (c *Configuration) GetFloat(name string) (float64, error) {
 
 	return v, nil
 }
+
+// GetBool devuelve el valor del campo si existe, tipo bool
+func (c *Configuration) GetBool(name string) (bool, error) {
+	v, ok := c.data[name].(bool)
+	if !ok {
+		return false, errors.New(fmt.Sprintf("no existe el campo %s o no se puede convertir en bool", name))
+	}
+
+	return v, nil
+}

@@ -3,5 +3,6 @@
   "db_port": 5432,
   "db_name": "mibasededatos",
   "db_user": "usuario",
-  "db_password": "clave"
+  "db_password": "clave",
+  "is_secure": true
 }
