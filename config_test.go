@@ -70,3 +70,15 @@ func TestConfiguration_GetInt(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+func TestConfiguration_GetFloat(t *testing.T) {
+	c, err := config.New("config.json.example")
+	if err != nil {
+		t.Errorf("no se pudo cargar la configuracion: %v", err)
+	}
+
+	_, err = c.GetFloat("db_port")
+	if err != nil {
+		t.Error(err)
+	}
+}

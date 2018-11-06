@@ -79,3 +79,13 @@ func (c *Configuration) GetInt(name string) (int, error) {
 
 	return int(v), nil
 }
+
+// GetFloat devuelve el valor del campo si existe, tipo float64
+func (c *Configuration) GetFloat(name string) (float64, error) {
+	v, ok := c.data[name].(float64)
+	if !ok {
+		return 0, errors.New(fmt.Sprintf("no existe el campo %s o no se puede convertir en float64", name))
+	}
+
+	return v, nil
+}
