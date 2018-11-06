@@ -1,12 +1,13 @@
 package config_test
 
 import (
-	"github.com/alexyslozada/config-go"
 	"testing"
+
+	"github.com/alexyslozada/config-go"
 )
 
 func TestLoadFile(t *testing.T) {
-	_, err := config.LoadFile("config.json")
+	_, err := config.LoadFile("config.json.example")
 	if err != nil {
 		t.Errorf("no se pudo leer el archivo: %v", err)
 	}
@@ -28,43 +29,43 @@ func TestLoadBytes(t *testing.T) {
 }
 
 func TestNew(t *testing.T) {
-	_, err := config.New("config.json")
+	_, err := config.New("config.json.example")
 	if err != nil {
 		t.Errorf("no se pudo cargar la configuracion: %v", err)
 	}
 }
 
 func TestConfiguration_Validate(t *testing.T) {
-	c, err := config.New("config.json")
+	c, err := config.New("config.json.example")
 	if err != nil {
 		t.Errorf("no se pudo cargar la configuracion: %v", err)
 	}
 
-	err = c.Validate( "db_server", "db_port", "db_user", "db_password")
+	err = c.Validate("db_server", "db_port", "db_user", "db_password")
 	if err != nil {
 		t.Error(err)
 	}
 }
 
 func TestConfiguration_Get(t *testing.T) {
-	c, err := config.New("config.json")
+	c, err := config.New("config.json.example")
 	if err != nil {
 		t.Errorf("no se pudo cargar la configuracion: %v", err)
 	}
 
-	_, err = c.Get( "db_server")
+	_, err = c.Get("db_server")
 	if err != nil {
 		t.Error(err)
 	}
 }
 
 func TestConfiguration_GetInt(t *testing.T) {
-	c, err := config.New("config.json")
+	c, err := config.New("config.json.example")
 	if err != nil {
 		t.Errorf("no se pudo cargar la configuracion: %v", err)
 	}
 
-	_, err = c.GetInt( "db_port")
+	_, err = c.GetInt("db_port")
 	if err != nil {
 		t.Error(err)
 	}
