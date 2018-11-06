@@ -3,8 +3,9 @@ package config
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/pkg/errors"
 	"io/ioutil"
+
+	"github.com/pkg/errors"
 )
 
 var cnfg Configuration
@@ -63,7 +64,7 @@ func (c *Configuration) Validate(names ...string) error {
 func (c *Configuration) Get(name string) (string, error) {
 	v, ok := c.data[name].(string)
 	if !ok {
-		return "", errors.New(fmt.Sprintf("no existe el campo %s", name))
+		return "", errors.New(fmt.Sprintf("no existe el campo %s o no se puede convertir en string", name))
 	}
 
 	return v, nil
@@ -73,7 +74,7 @@ func (c *Configuration) Get(name string) (string, error) {
 func (c *Configuration) GetInt(name string) (int, error) {
 	v, ok := c.data[name].(float64)
 	if !ok {
-		return 0, errors.New(fmt.Sprintf("no existe el campo %s", name))
+		return 0, errors.New(fmt.Sprintf("no existe el campo %s o no se puede convertir en int", name))
 	}
 
 	return int(v), nil
