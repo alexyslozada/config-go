@@ -102,10 +102,21 @@ func (c *Configuration) GetBool(name string) (bool, error) {
 
 // GetSliceString devuelve el valor del campo si existe, tipo []string
 func (c *Configuration) GetSliceString(name string) ([]string, error) {
-	v, ok := c.data[name].([]string)
+	ss := make([]string, 0)
+
+	vs, ok := c.data[name].([]interface{})
 	if !ok {
-		return nil, errors.New(fmt.Sprintf("no existe el campo %s o no se puede convertir en []string", name))
+		return nil, errors.New(fmt.Sprintf("no existe el campo %s", name))
 	}
 
-	return v, nil
+	for _, v := range vs {
+		s, ok := v.(string)
+		if !ok {
+			return nil, errors.New(fmt.Sprintf("el campo %s no se puede convertir en []string", name))
+		}
+
+		ss = append(ss, s)
+	}
+
+	return ss, nil
 }
