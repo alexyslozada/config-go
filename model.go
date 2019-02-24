@@ -2,10 +2,9 @@ package config
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
-
-	"github.com/pkg/errors"
 )
 
 var cnfg Configuration
